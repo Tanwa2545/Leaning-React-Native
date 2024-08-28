@@ -1,5 +1,6 @@
-import { Text, View, FlatList } from "react-native";
+import { Text, View, FlatList, Alert } from "react-native";
 import Person from "./components/Person";
+import AddForm from "./components/AddForm";
 import { myStyle } from "./styles/myStyles"
 import { useState } from "react";
 
@@ -19,6 +20,20 @@ export default function App() {
     })
   }
 
+  const insertData=(name,age)=>{
+    console.log("Inserting Name : "+name+" , Age: "+age);
+    if(name){
+      setData((prevData)=>{
+        return[
+          {id:Math.random(),name,age},
+          ...prevData
+        ]
+      })
+    }else{
+      Alert.alert("Warning","Please input name")
+    }
+  }
+
   return (
     <View style={myStyle.container}>
       <FlatList
@@ -30,6 +45,7 @@ export default function App() {
         ListHeaderComponent={<Text style={{alignSelf:"center",fontSize:30,fontWeight:"bold"}}>Student Data</Text>}
         ListEmptyComponent={<Text style={{alignSelf:"center",fontSize:20,fontWeight:"bold"}}>No Data</Text>}
       />
+      <AddForm insertData={insertData}/>
     </View>
   );
 }

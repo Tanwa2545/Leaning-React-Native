@@ -23,5 +23,12 @@ export const myStyle=StyleSheet.create({
   image:{
     width: 300,
     height: 300
+  },
+  input:{
+    borderBottomColor:"#ddd",
+    borderBottomWidth:1,
+    paddingHorizontal:8,
+    paddingVertical:6,
+    marginBottom:15
   }
 });
