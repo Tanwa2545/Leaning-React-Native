@@ -1,18 +1,41 @@
-import { View } from "react-native";
-import { myStyle } from "./styles/myStyles";
+import { Text, View, FlatList } from "react-native";
 import Person from "./components/Person";
+import { myStyle } from "./styles/myStyles"
+import { useState } from "react";
+
 
 export default function App() {
+  const [data,setData] = useState([
+    {id:1,name:"Kong",age:22},
+    {id:2,name:"Karn",age:20},
+    {id:3,name:"Charlie",age:21},
+    {id:4,name:"Meow Meow Cat",age:13}
+  ])
+
+  const deleteData=(id)=>{
+    console.log("Deleting id : "+id);
+    setData((prevData)=>{
+      return prevData.filter((item)=>item.id!=id)
+    })
+  }
+
   return (
     <View style={myStyle.container}>
-      <Person name={"Kong"} age={22}/>
-      <Person name={"Karn"} age={20}/>
-      <Person name={"Charlie"} age={21}/>
+      <FlatList
+        data={data}
+        renderItem={({item})=>(
+          <Person item={item} deleteData={deleteData}/>
+        )}
+        keyExtractor={(item)=>item.id}
+        ListHeaderComponent={<Text style={{alignSelf:"center",fontSize:30,fontWeight:"bold"}}>Student Data</Text>}
+        ListEmptyComponent={<Text style={{alignSelf:"center",fontSize:20,fontWeight:"bold"}}>No Data</Text>}
+      />
     </View>
   );
 }
 
 /*
+<Person name={"Kong"} age={22}/>
 <Image source={require("./assets/icon.png")} style={myStyle.image}></Image>
       <Image source={{uri:"https://picsum.photos/id/16/2500/1667"}} style={myStyle.image}></Image>
       <Text style={myStyle.header}>Maow</Text>
