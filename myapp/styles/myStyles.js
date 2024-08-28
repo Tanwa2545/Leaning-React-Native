@@ -18,11 +18,16 @@ export const myStyle=StyleSheet.create({
     borderWidth:2,
     borderColor:"black",
     borderStyle:"dashed",
-    borderRadius:10
+    borderRadius:10,
+    flexDirection:"row",
+    justifyContent:"space-between"
   },
   image:{
     width: 300,
     height: 300
+  },
+  icon:{
+    alignSelf:"center",
   },
   input:{
     borderBottomColor:"#ddd",
